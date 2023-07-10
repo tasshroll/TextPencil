@@ -3,27 +3,37 @@ A Progressive Web App (PWA) that empowers users to edit text directly in the bro
 
 # Description
 
-This full-stack application features the ability to enter notes or code into a text editor that runs in the browser. The app is a single-page application that meets PWA criteria. It features a number of data persistence techniques that serve as rerdundancy in case on the optioins is not supported by the browser. The application uses local storage, IndexedDB API for the database, and the cache to store and retreive data from. 
+This full-stack application features the ability to enter notes or code into a text editor that runs in the browser. The app is a single-page application that meets PWA criteria. It features a number of data persistence techniques that serve as rerdundancy in case on the optioins is not supported by the browser. Technical features of this application
+
+Uses IndexedDB to create an object store and includes both GET and PUT methods
+
+The application works without an internet connection
+
+Automatically saves content inside the text editor when the DOM window is unfocused
+
+Bundled with webpack
+
+Create a service worker with workbox that Caches static assets
+
+The application uses babel in order to use async / await
+
+Application has a generated manifest.json using the WebpackPwaManifest plug-in
+
+Can be installed as a Progressive Web Application
 
 [![License](https://img.shields.io/badge/License-n/a-n/a.svg)](n/a)
 
 # Git Hub Repository
 https://github.com/tasshroll/e-commerce
 
+# Deployed Application with build scripts
+
+
 # Screenshots
 ecommerce_db in mysql after seeds file has run
 
 ![ecommerce_db after seeds file has run](Assets/mysql-db-after-seeds.png)
 
-
-Visual for associations between 4 tables in database: Product, Category, Tags, ProductTags
-
-PK = Primary Key, FK = Foreign Key
-
-![Database Tables](./Assets/ecommerce-db.png)
-
-## Video
-[Click here for Video demonstration showing GET routes to return all categories, all products, and all tags in Insomnia Core. Video also shows POST, PUT, and DELETE routes for products, tags, and categori
 
 ## Table of Contents
 
@@ -201,24 +211,38 @@ Delete a tag by id
 ## User Story
 
 ```md
-AS A manager at an internet retail company
-I WANT a back end for my e-commerce website that uses the latest technologies
-SO THAT my company can compete with other e-commerce companies
+AS A developer
+I WANT to create notes or code snippets with or without an internet connection
+SO THAT I can reliably retrieve them for later use
 ```
 
 ## Acceptance Criteria
 
 ```md
-GIVEN a functional Express.js API
-WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-WHEN I open API GET routes in Insomnia for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete data in my database
+GIVEN a text editor web application
+WHEN I open my application in my editor
+THEN I should see a client server folder structure
+WHEN I run `npm run start` from the root directory
+THEN I find that my application should start up the backend and serve the client
+WHEN I run the text editor application from my terminal
+THEN I find that my JavaScript files have been bundled using webpack
+WHEN I run my webpack plugins
+THEN I find that I have a generated HTML file, service worker, and a manifest file
+WHEN I use next-gen JavaScript in my application
+THEN I find that the text editor still functions in the browser without errors
+WHEN I open the text editor
+THEN I find that IndexedDB has immediately created a database storage
+WHEN I enter content and subsequently click off of the DOM window
+THEN I find that the content in the text editor has been saved with IndexedDB
+WHEN I reopen the text editor after closing it
+THEN I find that the content in the text editor has been retrieved from our IndexedDB
+WHEN I click on the Install button
+THEN I download my web application as an icon on my desktop
+WHEN I load my web application
+THEN I should have a registered service worker using workbox
+WHEN I register a service worker
+THEN I should have my static assets pre cached upon loading along with subsequent pages and static assets
+WHEN I deploy to Heroku
+THEN I should have proper build scripts for a webpack application
 ```
 
