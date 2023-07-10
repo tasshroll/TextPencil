@@ -64,7 +64,7 @@ List of Scripts
 	  "install": "cd server && npm i && cd ../client && npm i",
  
 2. Start client and server code
-	* npm run start
+	* npm run start:dev
 	
 	Successful output is:
 
@@ -92,12 +92,6 @@ List of Scripts
  🚀 - data saved to the database 1 
 The editor has lost focus
 PUT to the database
-
- 
-
-2. npm run build
-3. npm run server - node server
-4. npm run server:start
 
 
 # Tests
