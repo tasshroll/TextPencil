@@ -28,12 +28,27 @@ https://github.com/tasshroll/TextPencil
 
 
 # Deployed Application with build scripts
+https://text-pencil-f10cc9e41d5a.herokuapp.com/
 
 
 # Screenshots
-ecommerce_db in mysql after seeds file has run
+<img src="Assets/jate_db1.png" alt="Dev Tools - JATE DB" width="500">
 
-![ecommerce_db after seeds file has run](Assets/mysql-db-after-seeds.png)
+
+Dev Tools - Local Storage
+
+<img src="Assets/local_storage.png" alt="Dev Tools - Local Storage" width="500">
+
+
+Dev Tools - manifest
+
+<img src="Assets/manifest.png" alt="Dev Tools - manifest" width="500">
+
+
+Dev Tools - Service Workers
+
+<img src="Assets/service_workers.png" alt="Dev Tools - Service Workers" width="500">
+
 
 
 ## Table of Contents
@@ -47,7 +62,11 @@ ecommerce_db in mysql after seeds file has run
 [Acceptance Criteria](#acceptance-criteria)
 
 # Installation & Usage
+Option 1: Run using the Heroku link above.
+
+Option 2: Run on command line.
 List of Scripts
+```json
   "scripts": {
     "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
     "start": "npm run build && cd server && node server.js",
@@ -55,8 +74,9 @@ List of Scripts
     "build": "cd client && npm run build",
     "install": "cd server && npm i && cd ../client && npm i",
     "client": "cd client && npm start"
+```
 
-
+These are the steps to run TextPencil from the command line 
 1. Set up the environment by installing node package manager on the server and client side
 
 	* npm install
