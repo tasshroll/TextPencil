@@ -1,9 +1,9 @@
 # TextPencil
-A Progressive Web App (PWA) that empowers users to edit text directly in the browser, while incorporating robust data persistence techniques.
+A Progressive Web App (PWA) that allows users to edit text directly in the browser, while incorporating robust data persistence techniques.
 
 # Description
 
-This full-stack application features the ability to enter notes or code into a text editor that runs in the browser. The app is a single-page application that meets PWA criteria. It features a number of data persistence techniques that serve as rerdundancy in case on the optioins is not supported by the browser. Technical features of this application
+This full-stack application features the ability to enter notes or code into a text editor that runs in the browser. The app is a single-page application that meets PWA criteria. It features a number of data persistence techniques that serve as rerdundancy in case on the optioins is not supported by the browser. Technical features of this application include:
 
 Uses IndexedDB to create an object store and includes both GET and PUT methods
 
@@ -24,7 +24,8 @@ Can be installed as a Progressive Web Application
 [![License](https://img.shields.io/badge/License-n/a-n/a.svg)](n/a)
 
 # Git Hub Repository
-https://github.com/tasshroll/e-commerce
+https://github.com/tasshroll/TextPencil
+
 
 # Deployed Application with build scripts
 
@@ -46,166 +47,60 @@ ecommerce_db in mysql after seeds file has run
 [Acceptance Criteria](#acceptance-criteria)
 
 # Installation & Usage
-
-1. Set up the environment by installing node package manager:
-
-	* npm i 
-
-
-2. Create the schema from the MySQL shell.
-
-	* mysql
-	* source {path}/schema.sql   source /Users/user/bootcamp/homeworks/e-commerce/db/schema.sql
-	* exit
+List of Scripts
+  "scripts": {
+    "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server nodemon server.js --ignore client",
+    "build": "cd client && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client": "cd client && npm start"
 
 
-3. Seed the database from the command line, OPTIONAL check of the contents of product table:
+1. Set up the environment by installing node package manager on the server and client side
 
-	* node ./seeds/index.js
-	* mysql
-	* use ecommerce_db
-	* SELECT `product`.`id`, `product`.`product_name`, `product`.`price`, `product`.`stock`, 
-	`product`.`category_id`, 
-	`tags`.`id` AS `tags.id`, 
-	`tags`.`tag_name` AS `tags.tag_name`, 
-	`tags->product_tag`.`id` AS `tags.product_tag.id`, 
-	`tags->product_tag`.`product_id` AS `tags.product_tag.product_id`, 
-	`tags->product_tag`.`tag_id` AS `tags.product_tag.tag_id`, 
-	`category`.`id` AS `category.id`, 
-	`category`.`category_name` AS `category.category_name` 
-	FROM `product` AS `product` LEFT OUTER JOIN ( `product_tag` AS `tags->product_tag` 
-	INNER JOIN `tag` AS `tags` ON `tags`.`id` = `tags->product_tag`.`tag_id`) 
-	ON `product`.`id` = `tags->product_tag`.`product_id` 
-	LEFT OUTER JOIN `category` AS `category` ON `product`.`category_id` = `category`.`id`;
+	* npm install
+	 invokes build script:
+	  "install": "cd server && npm i && cd ../client && npm i",
+ 
+2. Start client and server code
+	* npm run start
+	
+	Successful output is:
 
+	webpack 5.88.1 compiled successfully in 3575 ms
+	Now listening on port: 3000
 
-4. View table inside MySQL shell
-  * mysql
-  * use ecommerce_db
-  * show tables;
-  * dDESC product
+3. Open localhost:3000
 
-4. Start the server. Response is, "App listening on port 3001!"
+4. Enter some notes in the text editor
 
-	* node server.js
+5. Open Chrome Development Tools (right click "Inspect" on browser)
 
+6. Click on Application tab and then explore the following Storage locations on left panel:
+	Local Storage - text is saved here
+	IndexedDB - open jate - text is saved here
 
-5. Test - Open insomnia to simulate the front-end. Insomnia is a open-source RESTful API client that allows developers to test and interact with APIs. It provides a user-friendly interface for sending HTTP requests. From insomnia, use the following endpoints to test
+7. Go Offline (lost focus) and Enter Text
+	To go offline, select "Service Workers" on left panel and select "Offline" in middle. No internet is available to this page. Service Workers will cache the data.
+	Enter text.
+
+8. Notice that text entered is persistent. It is saved in local storage and cache.
+
+9. On Console tab, notice that each time you go from "offline" to "online" the following text is displayed
+
+ 🚀 - data saved to the database 1 
+The editor has lost focus
+PUT to the database
+
+ 
+
+2. npm run build
+3. npm run server - node server
+4. npm run server:start
+
 
 # Tests
-
-## Test Products using Insomnia
-To retreive all products including tags & categories
-* GET
-* 127.0.0.1:3001/api/products
-
-To retreive a single product
-* GET
-* 127.0.0.1:3001/api/products/4
-
-To create a product
-* 127.0.0.1:3001/api/products
-* POST
-
-```
-	Json Data:
-	{
-		"product_name": "Women's headdband",
-		"price": 12.00,
-		"stock": 5,
-		"tagIds": [1, 2, 3, 4]
-	}
-```
-
-
-To update a product
-* PUT
-* 127.0.0.1:3001/api/products/8
-
-```
-	Json Data:
-	{
-		"product_name": "Women's headwear",
-		"price": 14.00,
-		"stock": 5,
-		"tagIds": [1, 2, 3, 4]
-	}
-```
-
-To delete a product
-* DELETE
-* 127.0.0.1:3001/api/products/8
-
-
-
-## Test Categories using Insomnia
-To retreive all categories
-* GET
-* 127.0.0.1:3001/api/categories
-
-
-To retreive a single category
-* GET
-* 127.0.0.1:3001/api/categories/3
-
-
-To create a category
-* POST 
-* 127.0.0.1:3001/api/categories/
-
-```
-{
-	"category_name": "toys"
-}
-```
-
-
-To update a category by id
-* PUT
-* 127.0.0.1:3001/api/categories/6
-
-```
-	Json Data:
-	{
-	"category_name": "childrens toys"
- 	}
-```
-
-
-To delete a category by id
-* DELETE
-* 127.0.0.1:3001/api/categories/6
-
-## Test Tags using Insomnia
-Get all tag data including the products
-* GET 
-* 127.0.0.1:3001/api/tags
-
-Create a new tag
-* POST 
-* 127.0.0.1:3001/api/tags
-
-```
-	Json Data:
-	{
-		"tag_name": "comic socks"
-	}
-```
-
-Update a tag by id
-* PUT 
-* 127.0.0.1:3001/api/tags/9
-
-```
-	Json Data:
-	{
-		"tag_name": "comic books"
-	}
-```
-
-Delete a tag by id
-* DELETE
-* 127.0.0.1:3001/api/tags/9
 
 
 ## User Story

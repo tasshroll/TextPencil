@@ -221,3 +221,18 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete data in my database
 ```
 
+Definition of Terms:
+
+Google Lighthouse helps improve the performance of web applications by providing audits for performance, accessibility, progressive web apps, and more. It's included in Chrome DevTools.
+
+webpack is a module bundler for JavaScript that simplifies front-end web development by generating static assets from modules with dependencies and using plugins and loaders to help automate certain optimization strategies. webpack and webpack-cli packages, as well as the webpack-pwa-manifest, webpack-dev-server , workbox-webpack-plugin , and html-webpack-plugin packages. These loader modules are also used: webpack: css-loader, babel-loader, and style-loader.
+
+Babel is an open source JavaScript transcompiler that is mainly used to convert ECMAScript 2015+ code into a backwards-compatible version of JavaScript that can be run by older JavaScript engines. These packages are used : @babel/core, @babel/plugin-transform-runtime, @babel/preset-env, and @babel/runtime packages.
+
+Workbox is a set of libraries that allows you to easily power a production-ready service worker for a progressive web application. The following packages are used to access Workbox in applications: workbox-cacheable-response, workbox-precaching, workbox-routing, workbox-strategies, workbox-window, workbox-expiration, and workbox-recipes.
+
+idb is a small wrapper library that mirrors the IndexedDB API—a NoSQL web storage API in the browser—but it adds small improvements that makes the API easier to use.
+
+http-server is a simple, zero-configuration command-line static HTTP server that is use when testing applications locally.
+
+The concurrently npm package allows you to run multiple processes, or servers, from a single command-line interface. Rather than opening multiple terminals to start the multiple servers, you can run them both at the same time. It also allows you to keep track of different outputs in one place, and will stop all of your processes even if one of them fails.
