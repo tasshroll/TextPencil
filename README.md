@@ -5,7 +5,8 @@ A Progressive Web App (PWA) that allows users to edit text directly in the brows
 
 This full-stack application features the ability to enter notes or code into a text editor that runs in the browser. The app is a single-page application that meets PWA criteria. It features a number of data persistence techniques that serve as rerdundancy in case on the optioins is not supported by the browser. Technical features of this application include:
 
-Uses IndexedDB to create an object store and includes both GET and PUT methods
+Uses IndexedDB to create an object store and includes both GET and PUT methods. IndexDB is a temporary data storage that will update
+while offline.
 
 The application works without an internet connection
 

@@ -19,7 +19,7 @@ export const putDb = async (content) => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  const request = store.put({ value: content });
+  const request = store.put({ id: 1, value: content });
   const result = await request;
   console.log('🚀 - data saved to the database', result);
 };
@@ -31,10 +31,13 @@ export const getDb = async () => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
+  // Tin get(1), the 1 is referring to the ID value of the object stored in both local storage and IndexedDB
   const request = store.get(1);
   const result = await request;
-  console.log('result.value', result);
-  return result;
+  console.log('result.value', result?.value);
+  // returns the value of the value property from the result object if it exists, 
+  // or returns undefined if result is null or undefined
+  return result?.value;
 };
 
 initdb();
